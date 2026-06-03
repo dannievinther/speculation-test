@@ -1,0 +1,54 @@
+@view-transition {
+  navigation: auto;
+}
+html {
+  color-scheme: dark light;
+  background: Canvas;
+  color: CanvasText;
+  font: 100%/1.4 system-ui, sans-serif;
+}
+
+nav {
+  view-transition-name: --nav;
+}
+
+h1 {
+  view-transition-name: --heading;
+  width: fit-content;
+}
+
+::view-transition-old(--heading),
+::view-transition-new(--heading) {
+  block-size: 100%;
+  inline-size: 100%;
+}
+
+::view-transition-old(--paragraph):only-child {
+  animation-name: --slide-up;
+  animation-direction: reverse;
+  animation-duration: .1s;
+}
+::view-transition-new(--paragraph):only-child {
+  animation-name: --slide-up;
+}
+
+@keyframes --slide-up {
+  from {
+    clip-path: inset(50% 0 50% 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+body {
+  margin: 0;
+  height: 100dvh;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+}
+
+main {
+  margin-inline: max(1rem, 50% - 40ch / 2);
+}
